@@ -16,5 +16,5 @@ import java.util.Date;
 public class WeatherPk implements Serializable {
     private String city;
 
-    private Date date;
+    private String date;
 }

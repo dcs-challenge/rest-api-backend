@@ -16,8 +16,8 @@ public class Weather {
     @Id
     private String city;
     @Id
-    private Date date;
+    private String date;
 
-    @Column(nullable = false)
+    @Column
     private String temperature;
 }

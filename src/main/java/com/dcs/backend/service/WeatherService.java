@@ -5,6 +5,7 @@ import com.dcs.backend.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,5 +19,9 @@ public class WeatherService {
 
     public List<Weather> findWeatherByCity(String city) {
         return weatherRepository.findByCity(city);
+    }
+
+    public List<Weather> findWeatherByCityAndDate(String city, String date) {
+        return weatherRepository.findByCityAndDate(city, date);
     }
 }
