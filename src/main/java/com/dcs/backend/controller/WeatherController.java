@@ -3,6 +3,7 @@ package com.dcs.backend.controller;
 import com.dcs.backend.entity.Weather;
 import com.dcs.backend.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
     public Weather saveWeather(@RequestBody Weather weather){
         return weatherService.saveWeather(weather);
     }
