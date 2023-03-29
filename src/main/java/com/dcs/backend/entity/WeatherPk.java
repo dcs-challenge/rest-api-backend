@@ -2,22 +2,19 @@ package com.dcs.backend.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(WeatherPk.class)
-public class Weather {
-    @Id
+@EqualsAndHashCode
+public class WeatherPk implements Serializable {
     private String city;
-    @Id
-    private Date date;
 
-    @Column(nullable = false)
-    private String temperature;
+    private Date date;
 }

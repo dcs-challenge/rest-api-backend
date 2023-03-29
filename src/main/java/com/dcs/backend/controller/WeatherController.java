@@ -18,6 +18,7 @@ public class WeatherController {
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Weather saveWeather(@RequestBody Weather weather){
+        // Weather existingWeather = weatherService.findWeatherByCityAndDate()
         return weatherService.saveWeather(weather);
     }
 
@@ -25,5 +26,8 @@ public class WeatherController {
     public List<Weather> findWeather(@RequestParam(required=false) String city){
         return weatherService.findWeatherByCity(city);
     }
+
+    // private Weather verifyWeatherDoesNotExistForDate
+
 
 }
