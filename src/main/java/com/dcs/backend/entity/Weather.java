@@ -18,9 +18,9 @@ public class Weather {
     TODO : Change the entity and id so that id is unique.
     This is a half cooked entity to get going.
      */
+
     @Id
-    private String cityId;
-    private String cityName;
+    private String city;
     private Date date;
-    private String weatherStatus;
+    private String temperature;
 }
