@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,10 +16,13 @@ import java.util.Date;
 @IdClass(WeatherPk.class)
 public class Weather {
     @Id
+    @NotEmpty
     private String city;
     @Id
+    @NotEmpty
     private String date;
 
     @Column
+    @NotEmpty
     private String temperature;
 }
