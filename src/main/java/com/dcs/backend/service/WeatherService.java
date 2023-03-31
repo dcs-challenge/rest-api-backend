@@ -38,4 +38,8 @@ public class WeatherService {
             return weatherRepository.findByCityAndDate(city, date);
 
     }
+
+    public void deleteWeatherByCity(String city) {
+        weatherRepository.deleteByCity(city);
+    }
 }

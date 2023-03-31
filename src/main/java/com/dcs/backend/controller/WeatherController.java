@@ -33,6 +33,11 @@ public class WeatherController {
         return weatherService.findWeatherByCityAndDate(city, date);
     }
 
+    @DeleteMapping("/{city}")
+    public void deleteWeatherByCity(@PathVariable("city") String city ){
+        weatherService.deleteWeatherByCity(city);
+    }
+
     @GetMapping("/simulate500")
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void simulate500(){
