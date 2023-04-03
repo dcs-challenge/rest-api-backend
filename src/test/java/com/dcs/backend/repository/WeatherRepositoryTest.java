@@ -27,8 +27,10 @@ class WeatherRepositoryTest {
 
     private static final String city1 = "city1";
     private static final String city2 = "city2";
+    private static final String city3 = "city3";
     private static final String date1 = "2023-03-31";
     private static final String date2 = "2023-04-01";
+    private static final String date3 = "2023-04-02";
 
 
     @BeforeEach
@@ -53,7 +55,7 @@ class WeatherRepositoryTest {
         expectedWeatherList.add(weather_city1_date1);
         expectedWeatherList.add(weather_city1_date2);
 
-        assertEquals(foundWeatherList, expectedWeatherList);
+        assertEquals(expectedWeatherList, foundWeatherList);
 
     }
 
@@ -65,7 +67,7 @@ class WeatherRepositoryTest {
         expectedWeatherList.add(weather_city1_date1);
         expectedWeatherList.add(weather_city2_date1);
 
-        assertEquals(foundWeatherList, expectedWeatherList);
+        assertEquals(expectedWeatherList, foundWeatherList);
 
     }
 
@@ -76,7 +78,7 @@ class WeatherRepositoryTest {
         List<Weather> expectedWeatherList = new ArrayList<>();
         expectedWeatherList.add(weather_city1_date1);
 
-        assertEquals(foundWeatherList, expectedWeatherList);
+        assertEquals(expectedWeatherList, foundWeatherList);
     }
 
     @Test
@@ -84,7 +86,34 @@ class WeatherRepositoryTest {
         weatherRepository.deleteByCity(city1);
         List<Weather> foundWeatherList = weatherRepository.findByCity(date1);
         List<Weather> expectedWeatherList = new ArrayList<>();
-        assertEquals(foundWeatherList, expectedWeatherList);
+        assertEquals(expectedWeatherList, foundWeatherList);
+
+    }
+
+    @Test
+    public void emptyWeatherListIsReturnedOnFindingByNonExistentCity(){
+        List<Weather> foundWeatherList = weatherRepository.findByCity(city3);
+        List<Weather> expectedWeatherList = new ArrayList<>();
+
+        assertEquals(expectedWeatherList, foundWeatherList);
+
+    }
+
+    @Test
+    public void emptyWeatherListIsReturnedOnFindingByNonExistentDate(){
+        List<Weather> foundWeatherList = weatherRepository.findByCity(date3);
+        List<Weather> expectedWeatherList = new ArrayList<>();
+
+        assertEquals(expectedWeatherList, foundWeatherList);
+
+    }
+
+    @Test
+    public void emptyWeatherListIsReturnedOnFindingByNonExistentCityAndDate(){
+        List<Weather> foundWeatherList = weatherRepository.findByCity(date3);
+        List<Weather> expectedWeatherList = new ArrayList<>();
+
+        assertEquals(expectedWeatherList, foundWeatherList);
 
     }
 
