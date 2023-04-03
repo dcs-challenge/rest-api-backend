@@ -18,17 +18,14 @@ class WeatherServiceTest {
 
     @Autowired
     private WeatherService weatherService;
-
     @MockBean
     private WeatherRepository weatherRepository;
-
-    private List<Weather> weatherListCity1;
     private Weather weather_city1_date1;
     private Weather weather_city1_date2;
 
     @BeforeEach
     void setUp() {
-        weatherListCity1 = new ArrayList<>();
+        List<Weather>  weatherListCity1 = new ArrayList<>();
         List<Weather> weatherListDate1 = new ArrayList<>();
         weather_city1_date1 =
                 Weather.builder().city("city1").date("2023-03-31").temperature("1").build();
@@ -42,21 +39,13 @@ class WeatherServiceTest {
 
     @Test
     public void weather_should_be_returned_for_valid_city(){
-        // String city = "city1";
         List<Weather> expectedWeatherList = new ArrayList<>();
+        List<Weather> foundWeatherList = weatherService.findWeatherByCity("city1");
+
         expectedWeatherList.add(weather_city1_date1);
         expectedWeatherList.add(weather_city1_date2);
 
-        List<Weather> foundWeatherList = weatherService.findWeatherByCity("city1");
         assertEquals(foundWeatherList, expectedWeatherList);
-        /*
-        for (Weather weather : found){
-            System.out.println("Asserting " + weather.getCity() + "and " + city);
-            assertEquals(weather.getCity(), weather_city1_date1
-        }
-
-         */
-
     }
 
 }
