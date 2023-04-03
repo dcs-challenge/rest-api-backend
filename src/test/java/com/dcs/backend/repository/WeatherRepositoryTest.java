@@ -25,14 +25,20 @@ class WeatherRepositoryTest {
     private Weather weather_city1_date2;
     private Weather weather_city2_date1;
 
+    private static final String city1 = "city1";
+    private static final String city2 = "city2";
+    private static final String date1 = "2023-03-31";
+    private static final String date2 = "2023-04-01";
+
+
     @BeforeEach
     void setUp() {
         weather_city1_date1 =
-                Weather.builder().city("city1").date("2023-03-31").temperature("1").build();
+                Weather.builder().city(city1).date(date1).temperature("1").build();
         weather_city1_date2 =
-                Weather.builder().city("city1").date("2023-04-01").temperature("2").build();
+                Weather.builder().city(city1).date(date2).temperature("2").build();
         weather_city2_date1 =
-                Weather.builder().city("city2").date("2023-03-31").temperature("3").build();
+                Weather.builder().city(city2).date(date1).temperature("3").build();
 
         entityManager.persist(weather_city1_date1);
         entityManager.persist(weather_city1_date2);
@@ -41,7 +47,7 @@ class WeatherRepositoryTest {
 
     @Test
     public void weatherListIsReturnedOnFindingByCity(){
-        List<Weather> foundWeatherList = weatherRepository.findByCity("city1");
+        List<Weather> foundWeatherList = weatherRepository.findByCity(city1);
 
         List<Weather> expectedWeatherList = new ArrayList<>();
         expectedWeatherList.add(weather_city1_date1);
@@ -53,7 +59,7 @@ class WeatherRepositoryTest {
 
     @Test
     public void weatherListIsReturnedOnFindingByDate(){
-        List<Weather> foundWeatherList = weatherRepository.findByDate("2023-03-31");
+        List<Weather> foundWeatherList = weatherRepository.findByDate(date1);
 
         List<Weather> expectedWeatherList = new ArrayList<>();
         expectedWeatherList.add(weather_city1_date1);
@@ -65,7 +71,7 @@ class WeatherRepositoryTest {
 
     @Test
     public void weatherListIsReturnedOnFindingByCityAndDate(){
-        List<Weather> foundWeatherList = weatherRepository.findByCityAndDate("city1","2023-03-31");
+        List<Weather> foundWeatherList = weatherRepository.findByCityAndDate(city1,date1);
 
         List<Weather> expectedWeatherList = new ArrayList<>();
         expectedWeatherList.add(weather_city1_date1);
@@ -75,8 +81,8 @@ class WeatherRepositoryTest {
 
     @Test
     public void weatherListIsDeletedOnDeletingByCity(){
-        weatherRepository.deleteByCity("city1");
-        List<Weather> foundWeatherList = weatherRepository.findByCity("city1");
+        weatherRepository.deleteByCity(city1);
+        List<Weather> foundWeatherList = weatherRepository.findByCity(date1);
         List<Weather> expectedWeatherList = new ArrayList<>();
         assertEquals(foundWeatherList, expectedWeatherList);
 
