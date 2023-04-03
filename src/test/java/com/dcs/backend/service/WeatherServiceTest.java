@@ -30,7 +30,7 @@ class WeatherServiceTest {
         weather_city1_date1 =
                 Weather.builder().city("city1").date("2023-03-31").temperature("1").build();
         weather_city1_date2 =
-                Weather.builder().city("city2").date("2023-04-01").temperature("2").build();
+                Weather.builder().city("city1").date("2023-04-01").temperature("2").build();
         weatherListCity1.add(weather_city1_date1);
         weatherListCity1.add(weather_city1_date2);
         Mockito.when(weatherRepository.findByCity("city1")).thenReturn(weatherListCity1);
