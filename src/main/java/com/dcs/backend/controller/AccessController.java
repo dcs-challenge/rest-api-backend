@@ -25,10 +25,13 @@ public class AccessController {
     @Autowired
     private UserService userService;
 
+    /*
     @GetMapping("/")
     public String grantAccess(){
         return "Logged in Successfully";
     }
+
+     */
 
     @PostMapping("/auth")
     public AuthResponse authenticate(@RequestBody AuthRequest authRequest){

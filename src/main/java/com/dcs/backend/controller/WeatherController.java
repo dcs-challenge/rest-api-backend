@@ -24,6 +24,18 @@ public class WeatherController {
     @Autowired
     private WeatherService weatherService;
 
+    @Operation(summary = "This is to save the weather of a city for a date")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "201",
+                    description = "Save weather of a city for a date",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "403",
+                    description = "if trying to access without auth",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "409",
+                    description = "Weather already exists. If there is already an entry for the same city and date",
+                    content = {@Content(mediaType = "application/json")}),
+    })
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Weather saveWeather(@RequestBody @Validated Weather weather){
@@ -49,11 +61,29 @@ public class WeatherController {
         return weatherService.findWeatherByCityAndDate(city, date);
     }
 
+    @Operation(summary = "This is for the purpose of automation to help in deleting all the weather entries of a city")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200",
+                    description = "Delete all weather entries of a city",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "403",
+                    description = "if trying to access without auth",
+                    content = {@Content(mediaType = "application/json")}),
+    })
     @DeleteMapping("/{city}")
     public void deleteWeatherByCity(@PathVariable("city") String city ){
         weatherService.deleteWeatherByCity(city);
     }
 
+    @Operation(summary = "This is to simulate 500 status code.")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "500",
+                    description = "Simulate 500 status code",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "403",
+                    description = "if trying to access without auth",
+                    content = {@Content(mediaType = "application/json")}),
+    })
     @GetMapping("/simulate500")
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void simulate500(){
