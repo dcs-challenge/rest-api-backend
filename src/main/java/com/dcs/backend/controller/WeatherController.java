@@ -5,6 +5,10 @@ import com.dcs.backend.exception.ErrorResponse;
 import com.dcs.backend.exception.ParamsMissingException;
 import com.dcs.backend.exception.WeatherAlreadyExistsException;
 import com.dcs.backend.service.WeatherService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +31,18 @@ public class WeatherController {
         return weatherService.saveWeather(weather);
     }
 
+    @Operation(summary = "This is to fetch the list of weather status(es) based on either city or date as query string param")
+    @ApiResponses(value={
+            @ApiResponse(responseCode = "200",
+                description = "fetch list of weather by city or date",
+                content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "403",
+                    description = "if trying to access without auth",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "422",
+                    description = "if no 'city' or 'date' request param is present in query string",
+                    content = {@Content(mediaType = "application/json")}),
+    })
     @GetMapping("")
     public List<Weather> findWeather(@RequestParam(required=false) String city, @RequestParam(required=false) String date){
         verifyAtLeastOneParameterIsPresent(city, date);
