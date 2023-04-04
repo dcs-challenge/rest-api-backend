@@ -11,8 +11,20 @@ import java.util.ArrayList;
 
 @Service
 public class UserService implements UserDetailsService {
+    private String user;
+    private String password;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User(System.getenv("DCS_USER_NAME"), System.getenv("DCS_PASSWORD"), new ArrayList<>());
+        if (System.getenv("DCS_USER_NAME") != null)
+            user = System.getenv("DCS_USER_NAME");
+        else
+            user = "admin";
+
+        if (System.getenv("DCS_PASSWORD") != null)
+            password = System.getenv("DCS_PASSWORD");
+        else
+            password = "password";
+
+        return new User(user, password, new ArrayList<>());
     }
 }
