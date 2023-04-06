@@ -81,7 +81,7 @@ DCS_PASSWORD - This sets the password needed for authentication.
 
 ### How to run
 ```bash
-docker run arunaneja/dcs-rest-api-backend:<tag-name> -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<password>
+docker run -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<password> arunaneja/dcs-rest-api-backend:<tag-name> 
 ```
 or 
 
@@ -187,7 +187,7 @@ Response body
 
 First, bring the container up by either of the following commands.
 ```bash
-docker run arunaneja/dcs-rest-api-backend:<tag-name> -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<password>
+docker run -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<password> arunaneja/dcs-rest-api-backend:<tag-name> 
 ```
 or
 
