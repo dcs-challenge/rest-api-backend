@@ -1,7 +1,7 @@
 # REST API Backend
 
 
-This is a backend application built using Java and Spring  Boot which provides REST API for both saving and retrieving the temperature of a city.
+This is a backend application built using Java 11 and Spring Boot version 2.3.1 which provides REST API for both saving and retrieving the weather of a city.
 It also simulates a buggy endpoint returning 500 error status code. 
 
 ## Table Of Content
@@ -20,8 +20,7 @@ It also simulates a buggy endpoint returning 500 error status code.
     - [How to run](#how-to-run)
 - [API Documentation](#api-documentation)
     - [API Reference](#api-reference)
-    - [Swagger Docs](#swagger-docs)
-    - [Postman Collection](#postman-collection)   
+    - [Swagger Docs](#swagger-docs)  
 - [List of handled exceptions](#handled-exceptions)
 - [Known issues/limitations](#known-issues)
 
@@ -107,6 +106,8 @@ docker-compose -f docker-compose-only up
 | `username` | `string` | **Required**. Username|
 | `password` | `string` | **Required**. password|
 
+
+
 #### Get weather by city
 
 ```http
@@ -151,6 +152,17 @@ docker-compose -f docker-compose-only up
 | :-------- | :------- | :------------------------- |
 | `Authorizarion` | Bearer token | Bearer token returned in the auth call |
 
+```python
+  Success status code : 201
+```
+```python
+Response body
+{ "city": <string>,
+  "date": <string>
+  "temperature": <string>
+ }
+ ```
+
 
 #### Delete weather by city
 ```http
@@ -191,7 +203,6 @@ Then, access the url -
 http://localhost:9081//swagger-ui.html
 ```
 
-### Postman Collection
 ### Handled Exceptions (and respective status codes)
 * 422 - If trying to get weather status without any parameter (city or date)
 * 409 - If trying to sace weather for an existing combination of city and date.
