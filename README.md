@@ -106,7 +106,7 @@ docker-compose -f docker-compose-only up
 | `username` | `string` | **Required**. Username|
 | `password` | `string` | **Required**. password|
 
-
+![Alt text](https://user-images.githubusercontent.com/30894904/230284376-1bdb2ece-935e-4eab-87eb-659a8f41f718.png "Sample Auth call")
 
 #### Get weather by city
 
@@ -121,6 +121,8 @@ docker-compose -f docker-compose-only up
 | Request header | Value     | Description                |
 | :-------- | :------- | :------------------------- |
 | `Authorizarion` | Bearer token | Bearer token returned in the auth call |
+
+![Alt text](https://user-images.githubusercontent.com/30894904/230284402-7f3c7b2a-0338-4e2a-83bc-1aaa8255647d.png "Sample GET call")
 
 #### Get weather by date
 
@@ -162,6 +164,8 @@ Response body
   "temperature": <string>
  }
  ```
+ 
+ ![Alt text](https://user-images.githubusercontent.com/30894904/230284390-cb408f42-7c16-46b6-bab2-5d5c00249444.png "Sample POST call")
 
 
 #### Delete weather by city
@@ -202,6 +206,8 @@ Then, access the url -
 ```bash
 http://localhost:9081//swagger-ui.html
 ```
+
+![Alt text](https://user-images.githubusercontent.com/30894904/230285666-b17ff412-3481-406e-b27b-02da70ec74eb.png "Sample GET call")
 
 ### Handled Exceptions (and respective status codes)
 * 422 - If trying to get weather status without any parameter (city or date)
