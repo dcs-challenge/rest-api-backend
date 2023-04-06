@@ -192,7 +192,8 @@ docker run -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<pass
 or
 
 ```bash
-docker-compose -f docker-compose-only up
+git clone https://github.com/dcs-challenge/container-orchestration.git
+docker-compose -f docker-compose-only-api up
 ```
 
 Then, access the url - 
