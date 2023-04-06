@@ -7,7 +7,8 @@ It also simulates a buggy endpoint returning 500 error status code.
 ## Table Of Content
 
 - [Endpoints](#endpoints)
-    - [1. GET](#get)
+    - [1. Auth - POST](#auth)
+    - [2. GET](#get)
         - [By city](#by-city)
         - [By date](#by-date)
     - [2. POST](#post)
@@ -18,6 +19,7 @@ It also simulates a buggy endpoint returning 500 error status code.
     - [Environment variables](#environment-variables)
     - [How to run](#how-to-run)
 - [API Documentation](#api-documentation)
+    - [API Reference](#api-reference)
     - [Swagger Docs](#swagger-docs)
     - [Postman Collection](#postman-collection)   
 - [List of handled exceptions](#handled-exceptions)
@@ -27,8 +29,10 @@ It also simulates a buggy endpoint returning 500 error status code.
 ## Endpoints
 
 Below are the possible endpoints.
+### Auth 
+(/auth) POST call to authenticate. More details in [API Documentation](#api-documentation)
 ### GET 
-(/weather) - More details in [Swagger Docs](#swagger-docs)
+(/weather) - More details in [API Documentation](#api-documentation)
 
 This is used to fetch the list of weatherstatus(es) based on either city or date (or both) based on the query string parameter.
 
@@ -47,19 +51,19 @@ In this case, the temperature of all the cities for this date is returned.
 
 
 ### POST
-(/weather) - More details in [Swagger Docs](#swagger-docs)
+(/weather) - More details in [API Documentation](#api-documentation)
 
 **Note:** Authentication is required, or else 403 is returned!
 
 This is used to save the temperature of a city for a specific date.
 ### Delete
-(/weather/{city}) - More details in [Swagger Docs](#swagger-docs)
+(/weather/{city}) - More details in [API Documentation](#api-documentation)
 
 **Note:** Authentication is required, or else 403 is returned!
 This endpoint is developed for test automation scripts so that the data related to the city can be deleted after the test is completed.
 
 ### 500 
-More details in [Swagger Docs](#swagger-docs)
+More details in [API Documentation](#api-documentation)
 
 This is a buggy endpoint which responds 500 status code.
 
@@ -89,6 +93,80 @@ docker-compose -f docker-compose-only up
 ```
 ##
 ## API Documentation
+
+### API Reference
+
+#### Authentication
+
+```http
+  POST /auth
+```
+
+| Request Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. Username|
+| `password` | `string` | **Required**. password|
+
+#### Get weather by city
+
+```http
+  GET /weather?city=<city>
+```
+
+| Request param | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `city` | `string` | City for which weather is needed |
+
+| Request header | Value     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Authorizarion` | Bearer token | Bearer token returned in the auth call |
+
+#### Get weather by date
+
+```http
+  GET /weather?date<date>
+```
+
+| Request param | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `date` | `string` | Date for which weather is needed |
+
+| Request header | Value     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Authorizarion` | Bearer token | Bearer token returned in the auth call |
+
+#### Save weather
+
+```http
+  POST /weather
+```
+
+| Request Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `city` | `string` | **Required**. city|
+| `date` | `string` | **Required**. date, to be given in the format yyyy-mm-dd |
+| `temperature` | `string` | **Required**. temperature|
+
+| Request header | Value     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Authorizarion` | Bearer token | Bearer token returned in the auth call |
+
+
+#### Delete weather by city
+```http
+  DELETE /weather/{city}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `city`      | `string` | **Required**. city for which data to be deleted. developed to help test automation scripts to delete data |
+
+| Request header | Value     | Description                |
+| :-------- | :------- | :------------------------- |
+| `Authorizarion` | Bearer token | Bearer token returned in the auth call |
+
+
+
 ### Swagger Docs
 
 First, bring the container up by either of the following commands.
