@@ -88,7 +88,7 @@ or
 The container orchestration file can be seen here - https://github.com/dcs-challenge/container-orchestration/blob/main/docker-compose-only-api.yml
 Then, use the following command
 ```bash
-docker-compose -f docker-compose-only-api up
+docker-compose -f docker-compose-only-api.yml up
 ```
 ##
 ## API Documentation
@@ -193,7 +193,7 @@ or
 
 ```bash
 git clone https://github.com/dcs-challenge/container-orchestration.git
-docker-compose -f docker-compose-only-api up
+docker-compose -f docker-compose-only-api.yml up
 ```
 
 Then, access the url - 
