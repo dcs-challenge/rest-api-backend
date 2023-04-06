@@ -85,7 +85,7 @@ docker run -p <host-port>:8080 -e DCS_USERNAME=<user-name> -e DCS_PASSWORD=<pass
 ```
 or 
 
-The container orchestration file can be seen here - https://github.com/dcs-challenge/container-orchestration/blob/main/docker-compose-only-api.yml
+The container orchestration file can be seen here - https://github.com/dcs-challenge/container-orchestration/blob/main/docker-compose-only-api.yml.
 Then, use the following command
 ```bash
 docker-compose -f docker-compose-only-api.yml up
@@ -198,21 +198,21 @@ docker-compose -f docker-compose-only-api.yml up
 
 Then, access the url - 
 ```bash
-http://localhost:<host-port>//swagger-ui.html
+http://localhost:<host-port>/swagger-ui.html
 ```
 
 For e.g. if the port mapping used while running the docker container is 9081, the the url for Swagger docs would be 
 
 Then, access the url - 
 ```bash
-http://localhost:9081//swagger-ui.html
+http://localhost:9081/swagger-ui.html
 ```
 
 ![Alt text](https://user-images.githubusercontent.com/30894904/230285666-b17ff412-3481-406e-b27b-02da70ec74eb.png "Sample GET call")
 
 ### Handled Exceptions (and respective status codes)
 * 422 - If trying to get weather status without any parameter (city or date)
-* 409 - If trying to sace weather for an existing combination of city and date.
+* 409 - If trying to save weather for an existing combination of city and date.
 * 403 - If trying to save, get or delete without authentication.
-* 404 - Bad exception in various case, like saving weather without city in request body. 
+* 404 - Bad request in various case, like saving weather without city in request body. 
 
