@@ -21,8 +21,8 @@ It also simulates a buggy endpoint returning 500 error status code.
 - [API Documentation](#api-documentation)
     - [API Reference](#api-reference)
     - [Swagger Docs](#swagger-docs)  
-- [List of handled exceptions](#handled-exceptions)
-- [Known issues/limitations](#known-issues)
+- [Handled exceptions](#handled-exceptions)
+- [Points to note](#points-to-note) 
 
 ##
 ## Endpoints
@@ -210,9 +210,12 @@ http://localhost:9081/swagger-ui.html
 
 ![Alt text](https://user-images.githubusercontent.com/30894904/230285666-b17ff412-3481-406e-b27b-02da70ec74eb.png "Sample GET call")
 
-### Handled Exceptions (and respective status codes)
+### Handled Exceptions
 * 422 - If trying to get weather status without any parameter (city or date)
 * 409 - If trying to save weather for an existing combination of city and date.
 * 403 - If trying to save, get or delete without authentication.
 * 404 - Bad request in various case, like saving weather without city in request body. 
 
+### Points to note
+* The docker image built is multistage, to reduce the size of the same.
+* Appropriate unit tests have been written for controller, service and repository.
