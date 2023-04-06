@@ -7,12 +7,12 @@ It also simulates a buggy endpoint returning 500 error status code.
 ## Table Of Content
 
 - [Endpoints](#endpoints)
-    - [1. Auth - POST](#auth)
-    - [2. GET](#get)
+    - [1. Auth](#auth)
+    - [2. Get Weather](#get-weather)
         - [By city](#by-city)
         - [By date](#by-date)
-    - [2. POST](#post)
-    - [3. DELETE](#delete)
+    - [2. Save Weather](#save-weather)
+    - [3. Delete Weather](#delete)
     - [4. 500 status code simulation](#500)
 - [Usage](#usage)
     - [Docker hub](#docker-hub)
@@ -31,8 +31,8 @@ It also simulates a buggy endpoint returning 500 error status code.
 Below are the possible endpoints.
 ### Auth 
 (/auth) POST call to authenticate. More details in [API Documentation](#api-documentation)
-### GET 
-(/weather) - More details in [API Documentation](#api-documentation)
+### Get Weather 
+(/weather) GET call - More details in [API Documentation](#api-documentation)
 
 This is used to fetch the list of weatherstatus(es) based on either city or date (or both) based on the query string parameter.
 
@@ -50,14 +50,14 @@ In this case, the temperature of all dates for this city is returned.
 In this case, the temperature of all the cities for this date is returned.
 
 
-### POST
-(/weather) - More details in [API Documentation](#api-documentation)
+### Save weather
+(/weather) POST call - More details in [API Documentation](#api-documentation)
 
 **Note:** Authentication is required, or else 403 is returned!
 
 This is used to save the temperature of a city for a specific date.
 ### Delete
-(/weather/{city}) - More details in [API Documentation](#api-documentation)
+(/weather/{city}) DELETE call - More details in [API Documentation](#api-documentation)
 
 **Note:** Authentication is required, or else 403 is returned!
 This endpoint is developed for test automation scripts so that the data related to the city can be deleted after the test is completed.
